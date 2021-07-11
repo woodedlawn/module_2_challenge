@@ -11,7 +11,7 @@ import fire
 import questionary
 from pathlib import Path
 
-from qualifier.utils.fileio import load_csv
+from qualifier.utils.fileio import load_csv, save_csv
 
 from qualifier.utils.calculators import (
     calculate_monthly_debt_ratio,
@@ -103,13 +103,38 @@ def find_qualifying_loans(bank_data, credit_score, debt, income, loan, home_valu
 
 
 def save_qualifying_loans(qualifying_loans):
-    """Saves the qualifying loans to a CSV file.
+    """Asks for a filepath to save the qualifying loans to a CSV file.
 
     Args:
         qualifying_loans (list of lists): The qualifying bank loans.
+    
+    Returns:
+        None
     """
-    # @TODO: Complete the usability dialog for savings the CSV Files.
-    # YOUR CODE HERE!
+    
+    # prompt the user to save the results as a csv file
+    should_save = questionary.confirm("Would you like to save your qualifying loans to a CSV file").ask()
+    # if they opt out, exit
+    if should_save == False:
+        sys.exit("Goodbye!")
+    
+    # if no qualifying loans, notify user and exit
+    if len(qualifying_loans) == 0:
+        sys.exit("Since there are no qualifying loans, there is nothing to save. Goodbye!")
+
+    # prompt for a file path to save the CSV to
+    csvpath = questionary.text("Enter a file path to save your qualifying loans (.csv):", default="qualifying_loans.csv").ask()
+    csvpath = Path(csvpath)
+
+    # if the directory does not exist, notify and exit
+    if not csvpath.parent.exists():
+        sys.exit(f"Oops! The directory you specified does not exist: {csvpath.parent}")
+    
+    # make sure file is saved as .csv
+    if csvpath.suffix != '.csv':
+        csvpath = csvpath.with_suffix('.csv')
+
+    return save_csv(csvpath, qualifying_loans)
 
 
 def run():
