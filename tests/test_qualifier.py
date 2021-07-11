@@ -39,6 +39,19 @@ def test_filters():
 
     loan_to_value_ratio = 0.84
 
-    # @TODO: Test the new save_csv code!
-    # YOUR CODE HERE!
+    bank_data_filtered_max_loan_size = max_loan_size.filter_max_loan_size(loan, bank_data)
+    for bank in bank_data_filtered_max_loan_size:
+        assert int(bank[1]) >= loan
+
+    bank_data_filtered_credit_score = credit_score.filter_credit_score(current_credit_score, bank_data)
+    for bank in bank_data_filtered_credit_score:
+        assert int(bank[4]) <= current_credit_score
+    
+    bank_data_filtered_debt_to_income = debt_to_income.filter_debt_to_income(monthly_debt_ratio, bank_data)
+    for bank in bank_data_filtered_debt_to_income:
+        assert float(bank[3]) >= monthly_debt_ratio
+    
+    bank_data_filtered_loan_to_value = loan_to_value.filter_loan_to_value(loan_to_value_ratio, bank_data)
+    for bank in bank_data_filtered_loan_to_value:
+        assert float(bank[2]) >= loan_to_value_ratio
 
