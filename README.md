@@ -1,39 +1,50 @@
-# Project Title
+# QualifyingLoans2CSV
 
-Just after the title, introduce your project by describing attractively what the project is about and what is the main problem that inspires you to create this project or what is the main contribution for the potential user of your project.
+A CLI loan qualifier application that imports a CSV of available loans, qualifies them based on user input, and exports a list of qualifying loans to CSV.
 
 ---
 
 ## Technologies
 
-Describe the technologies required to use your project such as programming languages, libraries, frameworks, and operating systems. Be sure to include the specific versions of any critical dependencies that you have used in the stable version of your project.
+- Python 3.7.10
+- Fire 0.4.0
+- Questionary 1.9.0
 
 ---
 
 ## Installation Guide
 
-In this section, you should include detailed installation notes containing code blocks and screenshots.
+1.  Clone this repo to your local machine
+
+        git clone https://github.com/woodedlawn/module_2_challenge.git
+        cd module_2_challenge
+
+2.  Install the dependencies
+
+        conda install -c conda-forge --file requirements.txt
+
+    or
+
+        pip install -r requirements.txt
+
+3.  Run the app
+
+        python app.py
 
 ---
 
-## Examples
+## Usage / Example
 
-This section should include screenshots, code blocks, or animations showing how your project works.
-
----
-
-## Usage
-
-This section should include screenshots, code blocks, or animations explaining how to use your project.
+![App demo gif](demo.gif)
 
 ---
 
 ## Contributors
 
-In this section, list all the people who contribute to this project; since you may want to be reached by recruiters or potential collaborators, include your contact e-mail, and optionally your LinkedIn or Twitter profile.
+[![](https://github.com/woodedlawn.png?size=50)](https://github.com/woodedlawn)
 
 ---
 
 ## License
 
-When you share a project on a repository, especially a public one, it's important to choose the right license to specify others what they can and can not do with your source code and files. Use this section to include the licence you want to use.
+GNU GPLv3
